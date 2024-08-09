@@ -1,0 +1,88 @@
+<!-- =======| Main |======= -->
+<div class="container animated fadeInUp" id="main" class="main" role="main" name="users">
+
+    <div class="col-xs-12">
+        <div class="leftside">
+            <!-- Page Title -->
+            <div class="pagetitle">
+                <h1><i class="bx bxs-user-account"></i> {{title}}</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a routerLink="/"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="breadcrumb-item active">{{title}}</li>
+                    </ol>
+                </nav>
+            </div>
+            <!-- End Page Title -->
+        </div>
+        <div class="buton">
+            <button class="btn btn-outline-danger pull-right" href="javascript:void(0)" (click)="goBack()">Volver</button>
+            <button class="btn btn-outline-success pull-right" [routerLink]="['/dashboard/pais/create/']">Nuevo</button>
+        </div>
+        <div class="clear"></div>
+
+        <section class="section dashboard">
+
+
+            <!-- Recent Pagos -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- buscador -->
+                        <form class="form-horizontal">
+                            <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+                                <div class="input-group">
+                                    <input type="search" name="search" type="text" class="form-control col-xs-12" placeholder="Buscar.." [(ngModel)]="query" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+                                    <div class="input-group-append">
+                                        <button id="button-addon1" type="submit" class="btn btn-link text-primary" (click)="search()" name="submit" data-toggle="tooltip" title="mostrar todos"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- buscador -->
+                    </div>
+                </div>
+                <div class="card recent-sales overflow-auto">
+
+                    <div class="card-body">
+
+                        <table [ngClass]="loading? 'table table-borderless datatable':'table table-borderless'">
+                            <thead>
+                                <tr class="text-center">
+                                    <th class="footable-sortable">No<span class="footable-sort-indicator"></span></th>
+                                    <th class="footable-sortable">Título<span class="footable-sort-indicator"></span></th>
+                                    <th class="footable-sortable">codigo<span class="footable-sort-indicator"></span></th>
+                                    <th class="footable-sortable">Activo<span class="footable-sort-indicator"></span></th>
+                                    <th class="footable-sortable">Acciones<span class="footable-sort-indicator"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- | keys  -->
+                        <tr class="footable-even" *ngFor="let pais of paises | paginate: { itemsPerPage: count, currentPage: p }">
+                            <td><span class="footable-toggle"></span>{{pais.id}}</td>
+                            <td>{{pais.title}}</td>
+                            <td>{{pais.code}}</td>
+                            <td>{{pais.isActive}}</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-danger" (click)="onDelete(pais.id)"><i class="fa fa-trash"></i>Borrar</button>
+                                <a [routerLink]="['/dashboard/pais/edit', pais.id]"><button class="btn btn-sm btn-outline-success"><i class="fa fa-pencil"></i>Editar </button></a>
+                            </td>
+                        </tr>
+                            </tbody>
+
+                        </table>
+
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- End Recent Pagos -->
+
+        </section>
+    </div>
+
+</div>
+<!--/main-->

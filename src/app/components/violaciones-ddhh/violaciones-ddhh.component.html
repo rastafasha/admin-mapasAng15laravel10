@@ -1,0 +1,137 @@
+<div class="card-body blog-form">
+    <h5>{{pageTitle}}</h5>
+    <form [formGroup]="vioForm" (ngSubmit)="onSubmit(vioForm)" class="form-horizontal form-material">
+        <div class="form-group">
+            <label for="title">Pais</label>
+            <select formControlName="pais_code" class="form-control">
+            <option *ngFor="let v of countries" value="{{v.code}}">
+              {{v.title}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group form-row">
+            <label class="col-md-12">Violaciones de DDHH documentadas <span class="required">*</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="violacionesDdhhTotal" class="form-control" required>
+                <div *ngIf="violacionesDdhhTotal.invalid && (violacionesDdhhTotal.dirty || violacionesDdhhTotal.touched)" class="error">
+                    <div *ngIf="violacionesDdhhTotal.errors">
+                        Contenido es Requerido.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>Clasificación de las violaciones DDHH</h2>
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Derechos Civiles y Políticos </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="clasificacionDCP" class="form-control" required>
+                    <div *ngIf="clasificacionDCP.invalid && (clasificacionDCP.dirty || clasificacionDCP.touched)" class="error">
+                        <div *ngIf="clasificacionDCP.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Derechos Económicos, Sociales, Culturales y Ambientales </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="clasificacionDESCA" class="form-control" required>
+                    <div *ngIf="clasificacionDESCA.invalid && (clasificacionDESCA.dirty || clasificacionDESCA.touched)" class="error">
+                        <div *ngIf="clasificacionDESCA.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Derechos de los Pueblos </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="calsificacionPueblos" class="form-control" required>
+                    <div *ngIf="calsificacionPueblos.invalid && (calsificacionPueblos.dirty || calsificacionPueblos.touched)" class="error">
+                        <div *ngIf="calsificacionPueblos.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group form-row">
+            <label class="col-md-12">Lugar de comisión de los hechos violatorios <span class="required">*</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="lugar" class="form-control" required>
+                <div *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)" class="error">
+                    <div *ngIf="lugar.errors">
+                        Contenido es Requerido.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group form-row">
+            <label class="col-md-3">Breve descripción del caso <span class="required">*</span></label>
+            <div class="col-md-9">
+                <ckeditor [(data)]="editorData" formControlName="breveDescripcion" rows="5" class="form-control" required> </ckeditor>
+                <div *ngIf="breveDescripcion.invalid && (breveDescripcion.dirty || breveDescripcion.touched)" class="error">
+                    <div *ngIf="breveDescripcion.errors">
+                        Contenido es Requerido.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Número de casos que pueden concursar en los Sistemas de Protección Internacional de DDHH</h2>
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Casos que por su naturaleza pueden remitirse a la Corte Interamericana de DDHH: </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="numCasosCorteInterDDHH" class="form-control" required>
+                    <div *ngIf="numCasosCorteInterDDHH.invalid && (numCasosCorteInterDDHH.dirty || numCasosCorteInterDDHH.touched)" class="error">
+                        <div *ngIf="numCasosCorteInterDDHH.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Casos que por su naturaleza pueden remitirse al Comité de DDHH de las NU: </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="numCasosComDHNU" class="form-control" required>
+                    <div *ngIf="numCasosComDHNU.invalid && (numCasosComDHNU.dirty || numCasosComDHNU.touched)" class="error">
+                        <div *ngIf="numCasosComDHNU.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group form-row">
+            <label class="col-md-12">Casos en los que las víctimas prefieren no accionar ante los sistemas de protección <span class="required">*</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="casosNoAccionar" class="form-control" required>
+                <div *ngIf="casosNoAccionar.invalid && (casosNoAccionar.dirty || casosNoAccionar.touched)" class="error">
+                    <div *ngIf="casosNoAccionar.errors">
+                        Contenido es Requerido.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-row">
+            <label class="col-md-3"></label>
+            <div class="col-md-9">
+                <input type="hidden" formControlName="id">
+                <button type="submit" [disabled]="!vioForm.valid" class="btn btn-outline-success">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<div class="d-block mt-3 text-danger">
+    {{error}}
+</div>

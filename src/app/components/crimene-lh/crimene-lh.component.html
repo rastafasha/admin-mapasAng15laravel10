@@ -1,0 +1,143 @@
+<div class="card-body blog-form">
+    <h5>{{pageTitle}}</h5>
+    <form [formGroup]="crimenesForm" (ngSubmit)="onSubmit(crimenesForm)" class="form-horizontal form-material">
+        <div class="form-group">
+            <label for="title">Pais</label>
+            <select formControlName="pais_code" class="form-control">
+        <option *ngFor="let c of countries" value="{{c.code}}">
+          {{c.title}}
+        </option>
+      </select>
+        </div>
+        <div class="form-group form-row">
+            <label class="col-md-12">Crímenes de Lesa Humanidad registrados por las víctimas en el país de residencia actual <span class="required">*</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="crimeneslh" class="form-control" required>
+                <div *ngIf="crimeneslh.invalid && (crimeneslh.dirty || crimeneslh.touched)" class="error">
+                    <div *ngIf="crimeneslh.errors">
+                        Contenido es Requerido.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2>Clasificación de los casos de Crímenes de Lesa Humanidad y Violaciones de DDHH</h2>
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Colectivos </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="clasificacionColectiva" class="form-control" required>
+                    <div *ngIf="clasificacionColectiva.invalid && (clasificacionColectiva.dirty || clasificacionColectiva.touched)" class="error">
+                        <div *ngIf="clasificacionColectiva.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Individuales </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="clasificacionIndividual" class="form-control" required>
+                    <div *ngIf="clasificacionIndividual.invalid && (clasificacionIndividual.dirty || clasificacionIndividual.touched)" class="error">
+                        <div *ngIf="clasificacionIndividual.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group form-row">
+            <label class="col-md-12">Lugar de comisión de los hechos violatorios <span class="required">*</span></label>
+            <div class="col-md-9">
+                <input type="text" formControlName="lugar" class="form-control" required>
+                <div *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)" class="error">
+                    <div *ngIf="lugar.errors">
+                        Contenido es Requerido.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group form-row">
+            <label class="col-md-3">Breve descripción del caso <span class="required">*</span></label>
+            <div class="col-md-9">
+                <ckeditor [(data)]="editorData" formControlName="breveDescripcion" rows="5" class="form-control" required> </ckeditor>
+                <div *ngIf="breveDescripcion.invalid && (breveDescripcion.dirty || breveDescripcion.touched)" class="error">
+                    <div *ngIf="breveDescripcion.errors">
+                        Contenido es Requerido.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <h2>Núm. de casos que pueden ser llevados a la CPI</h2>
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Aprobados </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="numCasosCPIAprobados" class="form-control" required>
+                    <div *ngIf="numCasosCPIAprobados.invalid && (numCasosCPIAprobados.dirty || numCasosCPIAprobados.touched)" class="error">
+                        <div *ngIf="numCasosCPIAprobados.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Pendientes </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="numCasosCPIPendientes" class="form-control" required>
+                    <div *ngIf="numCasosCPIPendientes.invalid && (numCasosCPIPendientes.dirty || numCasosCPIPendientes.touched)" class="error">
+                        <div *ngIf="numCasosCPIPendientes.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <h2>Núm. de casos en los que las víctimas prefieren no accionar ante la CPI de forma individual</h2>
+        <div class="form-row">
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Aprobado </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="numCasosNoCpiAprobado" class="form-control" required>
+                    <div *ngIf="numCasosNoCpiAprobado.invalid && (numCasosNoCpiAprobado.dirty || numCasosNoCpiAprobado.touched)" class="error">
+                        <div *ngIf="numCasosNoCpiAprobado.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6">
+                <label>Pendiente </label>
+                <div class="col-md-12">
+                    <input type="text" formControlName="numCasosNoCpiPendiente" class="form-control" required>
+                    <div *ngIf="numCasosNoCpiPendiente.invalid && (numCasosNoCpiPendiente.dirty || numCasosNoCpiPendiente.touched)" class="error">
+                        <div *ngIf="numCasosNoCpiPendiente.errors">
+                            Contenido es Requerido.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group form-row">
+            <label class="col-md-3"></label>
+            <div class="col-md-9">
+                <input type="hidden" formControlName="id">
+                <button type="submit" [disabled]="!crimenesForm.valid" class="btn btn-outline-success">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<div class="d-block mt-3 text-danger">
+    {{error}}
+</div>

@@ -1,0 +1,78 @@
+<div class="row page-titles">
+    <div class="col-12 animated fadeInLeft">
+        <div class="card cardtop">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-10 align-self-center">
+                        <h3 class="text-themecolor">{{pageTitle}}</h3>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <button class="btn btn-outline-danger" href="javascript:void(0)" (click)="goBack()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-12 animated fadeInUp">
+        <div class="card">
+            <div class="card-body afiliaciones-form">
+                <form [formGroup]="documentoForm" (ngSubmit)="onSubmit()" class="form-horizontal form-material">
+
+                    <div class="form-group form-row">
+                        <label class="col-md-3">Título <span class="required">*</span></label>
+                        <div class="col-12">
+                            <input type="text" formControlName="title" class="form-control" placeholder="titulo" required>
+                            <div *ngIf="title.invalid && (title.dirty || title.touched)" class="error">
+                                <div *ngIf="title.errors">
+                                    Campo Requerido.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <label class="col-md-3">Descripcion</label>
+                        <div class="col-md-12">
+                            <textarea class="form-control"  name="description" formControlName="description" rows="5" cols="30"></textarea>
+                            <!-- <ckeditor [(data)]="editorData" formControlName="description" rows="5" class="form-control"> </ckeditor> -->
+
+                        </div>
+                    </div>
+
+                    <div class=" form-group ">
+                        <label class="col-md-3">Mostrar </label>
+                        <div class="col-md-9 demo-radio-button">
+                            <input type="radio" class="radio-col-green " formControlName="is_active" value="1" mdbInput> Si
+                            <input type="radio" class="radio-col-red" formControlName="is_active" value="0" mdbInput> No
+                        </div>
+                    </div>
+
+                    <div class="form-group form-row">
+                        <label class="col-md-3">Subir pdf</label>
+                        <div class="col-12">
+                            <input type="file" id="archivo" (change)="onSelectedFile($event)" accept="pdf/*" />
+
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12 ">
+                        <div>
+                            <input type="hidden" formControlName="id">
+                            <button type="submit" [disabled]="!documentoForm.valid" class="btn btn-outline-success">Guardar</button>
+                        </div>
+                    </div>
+
+                </form>
+
+
+            </div>
+            {{error}}
+        </div>
+    </div>
+</div>

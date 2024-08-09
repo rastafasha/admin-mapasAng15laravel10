@@ -1,0 +1,24 @@
+.mantengase {
+    background-color: #fff;
+    height: auto;
+}
+
+@media(max-width:768px) {
+    .mantengase .partner {
+        width: 60%;
+        height: auto;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .mantengase {
+        background-color: #fff;
+        height: auto;
+        overflow: hidden;
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+}
+
+@media(min-width:769px) {}
+
+@media(min-width:1600px) {}

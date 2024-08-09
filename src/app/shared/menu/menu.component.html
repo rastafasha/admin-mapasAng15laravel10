@@ -1,0 +1,44 @@
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li>
+                    <a routerLink="/" routerLinkActive="active" class="waves-effect waves-dark">
+                        <i class="mdi mdi-monitor"></i><span class="hide-menu">Home </span>
+                    </a>
+                </li>
+                <li *ngIf="role === 'SUPERADMIN' || role === 'ADMIN'">
+                    <a routerLink="./paises" routerLinkActive="active" class="waves-effect waves-dark">
+                        <i class="mdi mdi-earth"></i><span class="hide-menu">Paises </span>
+                    </a>
+                </li>
+                <li *ngIf="role === 'SUPERADMIN' || role === 'ADMIN'">
+                    <a routerLink="./usuarios" routerLinkActive="active" class="waves-effect waves-dark">
+                        <i class="mdi mdi-note"></i><span class="hide-menu">Usuarios </span>
+                    </a>
+                </li>
+                <!-- <li>
+                    <a routerLink="./slider" routerLinkActive="active" class="waves-effect waves-dark">
+                        <i class="mdi mdi-animation"></i><span class="hide-menu">Slider </span>
+                    </a>
+                </li> -->
+                <li><a (click)="logout()"><i class="fa fa-power-off"></i> Logout</a></li>
+                <!-- <li>
+                    <a routerLink="video" routerLinkActive="active" class="waves-effect waves-dark">
+                        <i class="mdi mdi-animation"></i><span class="hide-menu">Video </span>
+                    </a>
+                </li> -->
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->

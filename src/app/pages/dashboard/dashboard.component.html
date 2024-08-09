@@ -1,0 +1,58 @@
+<div class="row page-titles ">
+    <div class="col-md-5 align-self-center">
+        <h2 class="text-themecolor animated fadeInLeft">Bienvenid@
+            <h4 class="animated fadeInDown">{{user.name}} </h4>
+        </h2>
+    </div>
+</div>
+<div *ngIf="role === 'DOCTOR' ">
+    <h1 class="text-center">
+        Gracias por tu visita!
+    </h1>
+</div>
+<div class="row animated fadeInUp" *ngIf="role === 'SUPERADMIN' || role === 'ADMIN'">
+
+    <div class="col-6 col-sm-4 col-md-3 ">
+        <div class="card">
+            <a routerLink="../dashboard/paises">
+                <div class="card-body">
+                    <i class="mdi mdi-earth"></i>
+                    <p>Paises Eventos</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- <div class="col-6 col-sm-4 col-md-3">
+        <div class="card">
+            <a routerLink="../prensa">
+                <div class="card-body">
+                    <i class="mdi mdi-note"></i>
+                    <p>Prensa</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-6 col-sm-4 col-md-3">
+        <div class="card">
+            <a routerLink="../dashboard/slider">
+                <div class="card-body">
+                    <i class="mdi mdi-animation"></i>
+                    <p>Slider</p>
+                </div>
+            </a>
+        </div>
+    </div> -->
+
+    <div class="col-6 col-sm-4 col-md-3">
+        <div class="card">
+            <a routerLink="../dashboard/usuarios">
+                <div class="card-body">
+                    <i class="mdi mdi-animation"></i>
+                    <p>Usuarios</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+</div>
