@@ -152,7 +152,7 @@ export class UserService {
   }
 
   search(query=''){
-    return this.http.get(`${baseUrl}/user/search`, {params: {buscar: query}})
+    return this.http.get(`${baseUrl}/user/search/buscar`, {params: {buscar: query}})
 
   }
 

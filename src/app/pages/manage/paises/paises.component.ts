@@ -69,10 +69,16 @@ export class PaisesComponent implements OnInit {
   search() {
     return this.paisService.search(this.query).subscribe(
       (resp:any)=>{
-        this.paises = resp.countries;
+        this.paises = resp;
         if(!this.query){
           this.ngOnInit();
         }
       });
   }
+
+  public PageSize(): void {
+    this.getPaises();
+    this.query = '';
+  }
+
 }

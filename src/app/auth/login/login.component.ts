@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     // n_doc: ['', Validators.required],
     password: ['', Validators.required],
     password2: ['', Validators.required],
-    role_id: ['GUEST'],
+    // role_id: [5],
     // terminos: [false, Validators.required],
 
   }, {
@@ -113,18 +113,16 @@ login(){
 
 
 // Registro
-crearUsuario(){
+crearUsuario(){debugger
   this.formSumitted = true;
-  // if(this.registerForm.invalid){
-  //   return;
-  // }
-
+  console.log('Register form value:', this.registerForm.value);
   this.authService.crearUsuario(this.registerForm.value).subscribe(
     resp =>{
       Swal.fire('Registrado!', `Ya puedes ingresar`, 'success');
       this.ngOnInit();
     },(error) => {
-      // Swal.fire('Error', error.error.msg, 'error');
+      console.error('Error registering user:', error);
+      Swal.fire('Error', error.error.msg, 'error');
       this.errors = error.error;
     }
   );

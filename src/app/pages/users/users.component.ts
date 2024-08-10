@@ -132,11 +132,17 @@ export class UsersComponent implements OnInit {
   search() {
     return this.userService.search(this.query).subscribe(
       (res:any)=>{
-        this.usuarios = res.users.data;
+        console.log(res);
+        this.usuarios = res;
         if(!this.query){
           this.ngOnInit();
         }
       });
+  }
+
+  public PageSize(): void {
+    this.getUsers();
+    this.query = '';
   }
 
 

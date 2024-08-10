@@ -75,7 +75,7 @@ export class PaisService {
   }
 
   search(query=''){
-    return this.http.get(`${this.serverUrl}/user/search`, {params: {buscar: query}})
+    return this.http.get(`${this.serverUrl}/pais/search/buscar`, {params: {buscar: query}})
 
   }
 
