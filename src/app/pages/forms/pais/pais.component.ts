@@ -28,11 +28,22 @@ export class PaisComponent implements OnInit {
   public countries: Country;
   public respais:Pais;
   public pais_id:any;
-
+  public pa_assessmentgroup:any = [{}];;
+  
   public status;
   public user:any;
+  public ciudad:any;
+  public ciudadesList:any = [{}];
+  public ciudades:any;
+  public ubicacion:any;
+  public hora:any;
 
   paisForm: FormGroup;
+
+  tareaSelected:any =null;
+  paisSelected:any ;
+  selected_option: any = 1;
+  public family_edit: any = [];
 
   // public editorData = `<p>This is a CKEditor 4 WYSIWYG editor instance created with Angular.</p>`;
   // public editorDatac = `<p>This is a CKEditor 4 WYSIWYG editor instance created with Angular.</p>`;
@@ -68,6 +79,13 @@ export class PaisComponent implements OnInit {
       this.paisService.getPais(this.pais_id).subscribe(
         (res:any) => {
           console.log(res);
+
+          this.ciudades = res.ciudades;
+
+          this.ciudades = res.ciudades ? res.ciudades : null;// ?
+          let jsonObj = JSON.parse(this.ciudades) || '';
+          this.ciudadesList = jsonObj;
+
           this.paisForm.patchValue({
             title: res.pais.title,
             code: res.pais.code,
@@ -96,15 +114,16 @@ export class PaisComponent implements OnInit {
   get title() { return this.paisForm.get('title'); }
   get code() { return this.paisForm.get('code'); }
   get informacion() { return this.paisForm.get('informacion'); }
-  get ciudades() { return this.paisForm.get('ciudades'); }
+  // get ciudades() { return this.paisForm.get('ciudades'); }
   get isActive() { return this.paisForm.get('isActive'); }
 
-  onSubmit (form) {
+  saveGoal () {debugger
     const formData = new FormData();
     formData.append('title', this.paisForm.get('title').value);
     formData.append('code', this.paisForm.get('code').value);
     formData.append('informacion', this.paisForm.get('informacion').value);
-    formData.append('ciudades', this.paisForm.get('ciudades').value);
+    formData.append('ciudades', JSON.stringify(this.ciudadesList));
+    // formData.append('ciudades', this.paisForm.get('ciudades').value);
     formData.append('isActive', this.paisForm.get('isActive').value);
     formData.append('user_id', this.user.id);
     formData.append('pais_id', this.pais_id);
@@ -143,12 +162,13 @@ export class PaisComponent implements OnInit {
               text: 'Ocurrión un error, vuelva a intentar!',
             });
           } else {
-            //this.router.navigate(['/paises']);
             Swal.fire({
               icon: 'success',
               title: 'Se guardó correctamente',
               text: ''
             });
+            this.router.navigate(['/dashboard/paises']);
+            // this.ngOnInit();
 
           }
         },
@@ -170,6 +190,44 @@ export class PaisComponent implements OnInit {
 
       }
     )
+  }
+
+
+  //listas
+  addSTOGoal(){
+    this.ciudadesList.push({
+      ciudad: this.ciudad,
+      ubicacion: this.ubicacion,
+      hora: this.hora,
+    })
+    this.ciudad = '';
+    this.ubicacion = '';
+    this.hora = '';
+  }
+
+  deleteSTOGoal(i:any){
+    this.ciudadesList.splice(i,1);
+  }
+
+  selectedOption(value:number){
+    this.selected_option = value
+  }
+
+  seleccionarParaEdit(ciud:any){
+    this.family_edit = ciud;
+    console.log(this.family_edit);
+        
+    
+  }
+
+  selectedDireccion(todo:any){
+    this.tareaSelected = todo
+  }
+
+  cambiarStatus(ciud:any){
+    this.family_edit = ciud;
+        Swal.fire('Actualizad', `Actualizado item de la lista, ahora por favor pulsa el boton salvar!`, 'success');
+    
   }
 
 

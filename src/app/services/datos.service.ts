@@ -36,6 +36,11 @@ export class DatosvictimaService {
     let URL = this.serverUrl+"/evento/show/pais/"+id;
     return this.http.get(URL,{headers:headers});
   }
+  getDatosvictimaPaisCode(code: string) {
+    let headers = new HttpHeaders({'Authorization': 'Bearer'+this.authService.token});
+    let URL = this.serverUrl+"/evento/show/pais/code/"+code;
+    return this.http.get(URL,{headers:headers});
+  }
 
 
   createDatosvictima(data:any) {

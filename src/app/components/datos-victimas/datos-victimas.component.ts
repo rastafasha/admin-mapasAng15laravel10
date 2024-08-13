@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import * as ClassicEditor from 'ckeditor4';
@@ -21,6 +21,7 @@ import { Country } from '../../models/countries';
   styleUrls: ['./datos-victimas.component.css']
 })
 export class DatosVictimasComponent implements OnInit {
+
 
   pageTitle: string;
   error: string;
@@ -59,10 +60,16 @@ export class DatosVictimasComponent implements OnInit {
     this.activatedRoute.params.subscribe((resp:any)=>{
       this.pais_id = resp.id;
      })
-    this.getData();
+    this.getPaisSelected();
 
     // const id = this.activatedRoute.snapshot.paramMap.get('id');
     
+  }
+
+  getPaisSelected(){
+    this.paisService.getPais(this.pais_id).subscribe((resp:any)=>{
+      console.log(resp);
+    })
   }
 
   getPaisesList(){
@@ -82,13 +89,13 @@ export class DatosVictimasComponent implements OnInit {
       this.datosvictimaService.getDatosvictimaPais(this.pais_id).subscribe(
         (res:any) => {
           this.datForm.patchValue({
-            fecha: res.evento.fecha,
-            lugar: res.evento.lugar,
-            hora: res.evento.hora,
-            direccion: res.evento.direccion,
-            ciudad: res.evento.ciudad,
-            pais_code: res.evento.pais_code,
-            id: res.evento.id
+            fecha: res.evento?.fecha,
+            lugar: res.evento?.lugar,
+            hora: res.evento?.hora,
+            direccion: res.evento?.direccion,
+            ciudad: res.evento?.ciudad,
+            pais_code: res.evento?.pais_code,
+            id: res.evento?.id
           });
         }
       );
@@ -120,7 +127,7 @@ export class DatosVictimasComponent implements OnInit {
   get ciudad() { return this.datForm.get('ciudad'); }
   get pais_code() { return this.datForm.get('pais_code'); }
 
-  onSubmit (form) {
+  onSubmit (form) {debugger
     const formData = new FormData();
     formData.append('fecha', this.datForm.get('fecha').value);
     formData.append('lugar', this.datForm.get('lugar').value);
@@ -128,7 +135,7 @@ export class DatosVictimasComponent implements OnInit {
     formData.append('direccion', this.datForm.get('direccion').value);
     formData.append('ciudad', this.datForm.get('ciudad').value);
     formData.append('pais_code', this.datForm.get('pais_code').value);
-    formData.append('pais_id', this.pais_id);
+    // formData.append('pais_id', this.pais_id);
     formData.append('user_id', this.user.id);
 
     const id = this.datForm.get('id').value;

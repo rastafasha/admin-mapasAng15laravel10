@@ -1,0 +1,118 @@
+<div class="row page-titles">
+    <div class="col-12 animated fadeInLeft">
+        <div class="card cardtop">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-10 align-self-center">
+                        <h3 class="text-themecolor">{{pageTitle}}</h3>
+                    </div>
+                    <div class="col-12 col-sm-2">
+                        <button class="btn btn-outline-danger" href="javascript:void(0)" (click)="goBack()">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<section class="section dashboard accordion">
+    <div class="container">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Información Básica
+                </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="card-body">
+                            <div class="card">
+                                <div class="card-body blog-form">
+                                    <form [formGroup]="paisForm" (ngSubmit)="onSubmit(paisForm)" class="form-horizontal form-material">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label class="col-md-3">Título </label>
+                                                <div class="col-md-9">
+                                                    <input type="text" formControlName="title" class="form-control" placeholder="Title">
+                
+                                                </div>
+                                            </div>
+                
+                
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label class="col-md-3">Código </label>
+                                                <div class="col-md-9">
+                
+                                                    <select formControlName="code" class="form-control" name="code">
+                                                      <option *ngFor="let pais of countries" [value]="pais.code">
+                                                        {{pais.code}} | {{pais.title}}
+                                                      </option>
+                                                    </select>
+                
+                                                </div>
+                                            </div>
+                
+                                            <div class="col-xs-12 col-sm-4">
+                                                <label class="col-md-3">Activo</label>
+                                                <div class="col-md-9">
+                                                    <input type="radio" formControlName="isActive" value="isVisible" /> Yes
+                                                    <input type="radio" formControlName="isActive" value="noVisible" /> No
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group form-row">
+                                            <label class="col-md-3">Información</label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control"  name="informacion" formControlName="informacion" rows="5" cols="30"></textarea>
+                                                <!-- <ng-container #ckeditor1>
+                                                    <ckeditor [editor]="editorData"  formControlName="informacion" rows="5" class="form-control" placeholder="Direccion"> </ckeditor>
+                                                  </ng-container> -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-row">
+                                            <label class="col-md-3">Ciudades</label>
+                                            <div class="col-md-9">
+                                                <textarea class="form-control"  name="ciudades" formControlName="ciudades" rows="5" cols="30"></textarea>
+                                                <!-- <ng-container #ckeditor2>
+                                                    <ckeditor [editor]="editorDatac"  formControlName="ciudades" rows="5" class="form-control" placeholder="ciudades"> </ckeditor>
+                                                  </ng-container> -->
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-row">
+                                            <label class="col-md-3"></label>
+                                            <div class="col-md-9">
+                                                <input type="hidden" formControlName="id">
+                                                <button type="submit"  class="btn btn-outline-success">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+            
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Datos Envento
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="card-body">
+                            <app-datos-victimas></app-datos-victimas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
