@@ -28,9 +28,9 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       let headers = new HttpHeaders();
       let params = req.params;
-      if (localStorage.getItem('auth_token')) {
+      if (localStorage.getItem('token')) {
         headers = headers.append('Accept', 'application/json')
-          .append('Authorization', 'Bearer ' + localStorage.getItem('auth_token'));
+          .append('Authorization', 'Bearer ' + localStorage.getItem('token'));
       } else {
         headers = headers.append('Accept', 'application/json');
         // params = params.append('page', '1');

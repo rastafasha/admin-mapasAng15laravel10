@@ -34,11 +34,13 @@ export class PaisService {
 
 
   getCountries() {
-
     let headers = new HttpHeaders({'Authorization': 'Bearer'+this.authService.token});
     let URL = this.serverUrl+"/pais/countryList/";
-    return this.http.get(URL, {headers:headers})
+    return this.http.get(URL, {headers:headers}).pipe(
+      catchError(this.handleError)
+    );
   }
+
 
   getPaisDetail(code:string){
 

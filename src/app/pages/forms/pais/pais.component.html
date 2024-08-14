@@ -107,7 +107,7 @@
                 </form>
             </div>
             <div class="col-md-6 form-group">
-                <div class="row">
+                <div class="row" *ngIf="!tareaSelected">
                     <div class="col-lg-12 card">
                         <table class="table mb-0">
                             <thead>
@@ -144,10 +144,6 @@
                         </table>
                     </div>
                 </div>
-    
-                 
-    
-    
                 <div class="rbt-dashboard-table table-responsive mobile-table-750 tarea" *ngIf="tareaSelected" >
                     <div class="card">
                         <div class="card-body">
